@@ -14,17 +14,21 @@ public class IPhone extends IDevice
 
     // Constants
     private static final double MIN_PHONE_PLAN_MINUTES_REMAINING;
+    private static final int MIN_PHONE_PLAN_MINUTES_TO_ADD;
+    private static final int MIN_PHONE_PLAN_MINUTES_TO_REMOVE;
     private static final String PURPOSE;
 
     static
     {
         MIN_PHONE_PLAN_MINUTES_REMAINING = 0.0;
+        MIN_PHONE_PLAN_MINUTES_TO_ADD = 0;
+        MIN_PHONE_PLAN_MINUTES_TO_REMOVE = 0;
         PURPOSE = "talking";
     }
 
     // Instance Variables
-    private final double phonePlanMinutesRemaining;
-    private final String carrier;
+    private double phonePlanMinutesRemaining;
+    private String carrier;
 
     /**
      * Constructs an {@link IPhone} object with the specified remaining minutes
@@ -44,6 +48,78 @@ public class IPhone extends IDevice
 
         this.phonePlanMinutesRemaining = phonePlanMinutesRemaining;
         this.carrier = carrier;
+    }
+
+    /**
+     * Retrieves the number of minutes remaining on the phone plan.
+     *
+     * @return The remaining phone plan minutes as a {@code double}.
+     */
+    public double getPhonePlanMinutesRemaining()
+    {
+        return phonePlanMinutesRemaining;
+    }
+
+    /**
+     * Adds the specified number of minutes to the phone plan.
+     *
+     * @param minutesToAdd The number of minutes to add. Must be a positive value.
+     * @throws IllegalArgumentException If {@code minutesToAdd} is negative.
+     */
+    public void addPhonePlanMinutes(double minutesToAdd)
+    {
+        if (minutesToAdd < MIN_PHONE_PLAN_MINUTES_TO_ADD)
+        {
+            throw new IllegalArgumentException("Minutes to add cannot be negative.");
+        }
+        phonePlanMinutesRemaining += minutesToAdd;
+    }
+
+    /**
+     * Deducts the specified number of minutes from the phone plan.
+     *
+     * @param minutesToRemove The number of minutes to remove. Must be a positive value
+     *                        and not exceed the current balance.
+     * @throws IllegalArgumentException If {@code minutesToRemove} is negative or greater
+     *                                  than the remaining minutes.
+     */
+    public void removePhonePlanMinutes(double minutesToRemove)
+    {
+        if (minutesToRemove < MIN_PHONE_PLAN_MINUTES_TO_REMOVE)
+        {
+            throw new IllegalArgumentException("Minutes to remove cannot be negative.");
+        }
+        if (minutesToRemove > phonePlanMinutesRemaining)
+        {
+            throw new IllegalArgumentException("Cannot remove more minutes than available.");
+        }
+        phonePlanMinutesRemaining -= minutesToRemove;
+    }
+
+
+    /**
+     * Retrieves the carrier associated with this phone.
+     *
+     * @return The carrier as a {@code String}.
+     */
+    public String getCarrier()
+    {
+        return carrier;
+    }
+
+    /**
+     * Changes the carrier for this phone.
+     *
+     * @param newCarrier The new carrier name.
+     * @throws IllegalArgumentException If the {@code newCarrier} is {@code null} or empty.
+     */
+    public void changeCarrier(final String newCarrier)
+    {
+        if (newCarrier == null || newCarrier.isEmpty())
+        {
+            throw new IllegalArgumentException("Carrier cannot be null or empty.");
+        }
+        carrier = newCarrier;
     }
 
     /*
