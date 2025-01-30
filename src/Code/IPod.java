@@ -90,12 +90,12 @@ public class IPod extends IDevice
         numOfStoredSongs--;
     }
 
-    /**
+    /*
      * Validates the inputted decibel level and
-     * makes sure it's between 0.0 db and
-     * 85.0 db (the level when volume become dangerous for humans).
+     * makes sure it's between MIN_DECIBEL_LVL db and
+     * UNSAFE_DECIBEL_LVL (the level when volume become dangerous for humans).
      */
-    public void validateMaxDecibelLevel()
+    private void validateMaxDecibelLevel()
     {
         if(maxVolumeDecibel < MIN_DECIBEL_LVL)
         {
@@ -107,11 +107,10 @@ public class IPod extends IDevice
     }
 
     /**
-     * Returns the numOfStoredSongs and
-     * maxVolumeDecibel as a single string.
+     * Returns a string representation of the {@link IPod}, including its
+     * {@code numOfStoredSongs} and {@code maxVolumeDecibel}.
      *
-     * @return the number of stored songs and max volume
-     *         as a string.
+     * @return A formatted string containing the {@link IPod}'s details.
      */
     @Override
     public String toString()
@@ -128,10 +127,13 @@ public class IPod extends IDevice
     }
 
     /**
-     * Compares how many songs two iPod objects
-     * have in comparison to each other.
-     * @param obj
-     * @return
+     * Checks if this IPod object is equal to another object.
+     * Two IPod objects are considered equal if they have the same
+     * amount of songs stored.
+     *
+     * @param obj The object to compare to this IPod.
+     * @return {@code true} if the given object is an IPod with the same
+     * amount of songs stored, otherwise {@code false}.
      */
     @Override
     public boolean equals(Object obj)
@@ -149,8 +151,10 @@ public class IPod extends IDevice
     }
 
     /**
+     * Generates a hash code for this {@link IPod} object.
+     * Ensures that equal objects have the same hash code.
      *
-     * @return
+     * @return The hash code value for this {@link IPod}.
      */
     @Override
     public int hashCode() {

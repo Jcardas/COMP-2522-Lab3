@@ -4,10 +4,15 @@ import java.util.Objects;
  * Represents an iPhone, a type of {@link IDevice} with the purpose of  talking.
  * This class has variables for the phone's carrier and
  * remaining minutes on its phone plan.
+ *
+ * @author justin
+ * @author grace
+ * @version 1.0
  */
 public class IPhone extends IDevice
 {
 
+    // Constants
     private static final double MIN_PHONE_PLAN_MINUTES_REMAINING;
     private static final String PURPOSE;
 
@@ -17,6 +22,7 @@ public class IPhone extends IDevice
         PURPOSE = "talking";
     }
 
+    // Instance Variables
     private final double phonePlanMinutesRemaining;
     private final String carrier;
 
@@ -75,6 +81,9 @@ public class IPhone extends IDevice
                 " phone plan minutes remaining with the carrier " + carrier + ".");
     }
 
+    /**
+     * Prints the details of this IPhone object.
+     */
     @Override
     public void printDetails()
     {

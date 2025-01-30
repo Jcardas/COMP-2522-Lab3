@@ -1,6 +1,10 @@
 /**
- * Represents a device.
+ * Represents an IDevice.
  * A device gets its purpose and prints its own details.
+ *
+ * @author justin
+ * @author grace
+ * @version 1.0
  */
 public abstract class IDevice
 {
