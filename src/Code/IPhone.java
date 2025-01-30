@@ -40,11 +40,12 @@ public class IPhone extends IDevice
      * @throws IllegalArgumentException If phone plan minutes are less than {@code MIN_PHONE_PLAN_MINUTES_REMAINING}
      *                                  or if the carrier is {@code null}.
      */
-    IPhone(final double phonePlanMinutesRemaining, final String carrier)
+    IPhone(final double phonePlanMinutesRemaining,
+           final String carrier)
     {
         super(PURPOSE);
-        validatePhonePlanMinutesRemaining();
-        validateCarrier();
+        validatePhonePlanMinutesRemaining(phonePlanMinutesRemaining);
+        validateCarrier(carrier);
 
         this.phonePlanMinutesRemaining = phonePlanMinutesRemaining;
         this.carrier = carrier;
@@ -126,7 +127,7 @@ public class IPhone extends IDevice
      * Validates that the remaining phone plan minutes are not below
      * the allowed minimum.
      */
-    private void validatePhonePlanMinutesRemaining()
+    private void validatePhonePlanMinutesRemaining(final double phonePlanMinutesRemaining)
     {
         if (phonePlanMinutesRemaining < MIN_PHONE_PLAN_MINUTES_REMAINING)
         {
@@ -136,7 +137,7 @@ public class IPhone extends IDevice
     }
 
     //     Validates that the carrier is not null.
-    private void validateCarrier()
+    private void validateCarrier(final String carrier)
     {
         if (carrier == null)
         {

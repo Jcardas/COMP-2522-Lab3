@@ -39,14 +39,13 @@ public class IPod extends IDevice
      * @param maxVolumeDecibel the absolute max volume the iPod
      *                         can go measured in decibels.
      */
-    public IPod(final int numOfStoredSongs, final double maxVolumeDecibel)
+    public IPod(final int numOfStoredSongs,
+                final double maxVolumeDecibel)
     {
-        super("music");
-        validateMaxDecibelLevel();
+        super(PURPOSE);
+        validateMaxDecibelLevel(maxVolumeDecibel);
         this.numOfStoredSongs = numOfStoredSongs;
         this.maxVolumeDecibel = maxVolumeDecibel;
-
-
     }
 
     /**
@@ -61,16 +60,17 @@ public class IPod extends IDevice
     /**
      * @return the number of songs stored in the iPod as an integer value.
      */
-    public int getNumOfStoredSongs() {
+    public int getNumOfStoredSongs()
+    {
         return numOfStoredSongs;
     }
 
     /**
-     *
      * @param numOfStoredSongs is the number of songs stored on
      *                         the iPod currently.
      */
-    public void setNumOfStoredSongs(int numOfStoredSongs) {
+    public void setNumOfStoredSongs(int numOfStoredSongs)
+    {
         this.numOfStoredSongs = numOfStoredSongs;
     }
 
@@ -95,12 +95,12 @@ public class IPod extends IDevice
      * makes sure it's between MIN_DECIBEL_LVL db and
      * UNSAFE_DECIBEL_LVL (the level when volume become dangerous for humans).
      */
-    private void validateMaxDecibelLevel()
+    private void validateMaxDecibelLevel(final double maxVolumeDecibel)
     {
-        if(maxVolumeDecibel < MIN_DECIBEL_LVL)
+        if (maxVolumeDecibel < MIN_DECIBEL_LVL)
         {
             throw new IllegalArgumentException("Max volume must be a positive number.");
-        } else if(maxVolumeDecibel > UNSAFE_DECIBEL_LVL)
+        } else if (maxVolumeDecibel > UNSAFE_DECIBEL_LVL)
         {
             throw new IllegalArgumentException("Please input a number that is a safe decibel number.");
         }
@@ -145,7 +145,7 @@ public class IPod extends IDevice
         if (this == obj)
             return true;
         IPod other = (IPod) obj;
-        comparingIPods = this.numOfStoredSongs == other.numOfStoredSongs;
+        comparingIPods = this.numOfStoredSongs == other.getNumOfStoredSongs();
 
         return comparingIPods;
     }
@@ -157,9 +157,9 @@ public class IPod extends IDevice
      * @return The hash code value for this {@link IPod}.
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(
-                numOfStoredSongs,
-                maxVolumeDecibel);
+                getNumOfStoredSongs());
     }
 }

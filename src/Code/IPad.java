@@ -1,19 +1,21 @@
 import java.util.Objects;
 
 /**
- * Represents an iPhone, a type of {@link IDevice} with the purpose of  talking.
- * This class has variables for the phone's carrier and
- * remaining minutes on its phone plan.
+ * Represents an iPad, a type of {@link IDevice} with the purpose of learning.
+ * This class has variables for if it has a case applied, and
+ * the current operating system version.
+ *
+ * @author justin
+ * @author grace
+ * @version 1.0
  */
 public class IPad extends IDevice
 {
-
-    //    private static final double MIN_PHONE_PLAN_MINUTES_REMAINING;
     private static final String PURPOSE;
 
     static
     {
-        PURPOSE = "talking";
+        PURPOSE = "learning";
     }
 
     // Instance Variables
@@ -24,11 +26,12 @@ public class IPad extends IDevice
      * Constructs an {@link IPad} object with information about whether it has a case
      * and its operating system version.
      *
-     * @param iPadCase               {@code true} if the iPad has a case, {@code false} otherwise.
+     * @param iPadCase               {@code true} if the {@link IPad} has a case, {@code false} otherwise.
      * @param operatingSystemVersion The version of the operating system running on the iPad.
      * @throws IllegalArgumentException If the operating system version is {@code null} or empty.
      */
-    IPad(final boolean iPadCase, final String operatingSystemVersion)
+    IPad(final boolean iPadCase,
+         final String operatingSystemVersion)
     {
         super(PURPOSE);
         validateOperatingSystemVersion(operatingSystemVersion);
@@ -38,8 +41,8 @@ public class IPad extends IDevice
     }
 
     /**
-     * Toggles whether this iPad has a case or not.
-     * If the iPad currently has a case, it will be set to {@code false},
+     * Toggles whether this {@link IPad} has a case or not.
+     * If the {@link IPad} currently has a case, it will be set to {@code false},
      * and if it doesn't have a case, it will be set to {@code true}.
      */
     public void toggleHasCase()
@@ -48,9 +51,9 @@ public class IPad extends IDevice
     }
 
     /**
-     * Checks if this iPad has a case.
+     * Checks if this {@link IPad} has a case.
      *
-     * @return {@code true} if the iPad has a case, {@code false} otherwise.
+     * @return {@code true} if the {@link IPad} has a case, {@code false} otherwise.
      */
     public boolean hasIPadCase()
     {
@@ -58,7 +61,7 @@ public class IPad extends IDevice
     }
 
     /**
-     * Retrieves the current operating system version of the iPad.
+     * Retrieves the current operating system version of the {@link IPad}.
      *
      * @return The operating system version as a {@code String}.
      */
@@ -68,7 +71,7 @@ public class IPad extends IDevice
     }
 
     /**
-     * Sets a new operating system version for the iPad.
+     * Sets a new operating system version for the {@link IPad}.
      *
      * @param newOperatingSystemVersion The new operating system version.
      * @throws IllegalArgumentException If the {@code newOperatingSystemVersion} is
@@ -119,7 +122,7 @@ public class IPad extends IDevice
     }
 
     /**
-     * Prints the details of this IPad object to the console.
+     * Prints the details of this {@link IPad} object to the console.
      */
     @Override
     public void printDetails()
@@ -128,12 +131,12 @@ public class IPad extends IDevice
     }
 
     /**
-     * Checks if this IPad object is equal to another object.
-     * Two IPad objects are considered equal if they have the same
+     * Checks if this {@link IPad} object is equal to another object.
+     * Two {@link IPad} objects are considered equal if they have the same
      * operating system version.
      *
-     * @param obj The object to compare to this IPad.
-     * @return {@code true} if the given object is an IPad with the same
+     * @param obj The object to compare to this {@link IPad}.
+     * @return {@code true} if the given object is an {@link IPad} with the same
      * operating system version, otherwise {@code false}.
      * @author justin
      * @author grace
@@ -151,7 +154,7 @@ public class IPad extends IDevice
         if (this == obj)
             return true;
         IPad otherIPad = (IPad) obj;
-        comparingIPads = Objects.equals(this.operatingSystemVersion, otherIPad.operatingSystemVersion);
+        comparingIPads = Objects.equals(this.operatingSystemVersion, otherIPad.getOperatingSystemVersion());
         return comparingIPads;
     }
 
