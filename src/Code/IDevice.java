@@ -1,34 +1,28 @@
 /**
  * Represents a device.
- * A device gets it's purpose and prints its own details.
+ * A device gets its purpose and prints its own details.
  */
 public abstract class IDevice
 {
     private final String purpose;
 
-    public IDevice()
-    {
-        this.purpose = "";
-    }
-
     public IDevice(String purpose)
     {
+        validatePurpose(purpose);
         this.purpose = purpose;
-
     }
 
     public String getPurpose()
     {
-        String purpose;
-
-        purpose = "";
-
         return purpose;
     }
 
-    private void validatePurpose()
+    private void validatePurpose(final String purpose)
     {
-
+        if(purpose == null)
+        {
+            throw new IllegalArgumentException("Purpose cannot be null");
+        }
     }
 
     public abstract void printDetails();
