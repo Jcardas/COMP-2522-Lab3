@@ -17,25 +17,72 @@ public class IPad extends IDevice
     }
 
     // Instance Variables
-    private final boolean hasCase;
-    private final String operatingSystemVersion;
+    private boolean iPadCase;
+    private String operatingSystemVersion;
 
     /**
      * Constructs an {@link IPad} object with information about whether it has a case
      * and its operating system version.
      *
-     * @param hasCase {@code true} if the iPad has a case, {@code false} otherwise.
+     * @param iPadCase               {@code true} if the iPad has a case, {@code false} otherwise.
      * @param operatingSystemVersion The version of the operating system running on the iPad.
      * @throws IllegalArgumentException If the operating system version is {@code null} or empty.
      */
-    IPad(final boolean hasCase, final String operatingSystemVersion)
+    IPad(final boolean iPadCase, final String operatingSystemVersion)
     {
         super(PURPOSE);
         validateOperatingSystemVersion(operatingSystemVersion);
 
-        this.hasCase = hasCase;
+        this.iPadCase = iPadCase;
         this.operatingSystemVersion = operatingSystemVersion;
     }
+
+    /**
+     * Toggles whether this iPad has a case or not.
+     * If the iPad currently has a case, it will be set to {@code false},
+     * and if it doesn't have a case, it will be set to {@code true}.
+     */
+    public void toggleHasCase()
+    {
+        iPadCase = !iPadCase;
+    }
+
+    /**
+     * Checks if this iPad has a case.
+     *
+     * @return {@code true} if the iPad has a case, {@code false} otherwise.
+     */
+    public boolean hasIPadCase()
+    {
+        return iPadCase;
+    }
+
+    /**
+     * Retrieves the current operating system version of the iPad.
+     *
+     * @return The operating system version as a {@code String}.
+     */
+    public String getOperatingSystemVersion()
+    {
+        return operatingSystemVersion;
+    }
+
+    /**
+     * Sets a new operating system version for the iPad.
+     *
+     * @param newOperatingSystemVersion The new operating system version.
+     * @throws IllegalArgumentException If the {@code newOperatingSystemVersion} is
+     *                                  {@code null} or empty.
+     */
+    public void setOperatingSystemVersion(final String newOperatingSystemVersion)
+    {
+        if (newOperatingSystemVersion == null || newOperatingSystemVersion.isBlank())
+        {
+            throw new IllegalArgumentException("New operating system version cannot be null or empty.");
+        }
+        operatingSystemVersion = newOperatingSystemVersion;
+    }
+
 
     //     Validates that the operating system version is not null.
     private void validateOperatingSystemVersion(String operatingSystemVersion)
@@ -58,7 +105,7 @@ public class IPad extends IDevice
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
 
-        if (hasCase)
+        if (iPadCase)
         {
             sb.append(" it has a case");
         } else
@@ -88,7 +135,6 @@ public class IPad extends IDevice
      * @param obj The object to compare to this IPad.
      * @return {@code true} if the given object is an IPad with the same
      * operating system version, otherwise {@code false}.
-     *
      * @author justin
      * @author grace
      * @version 1.0
