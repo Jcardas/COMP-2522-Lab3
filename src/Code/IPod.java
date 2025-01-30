@@ -18,11 +18,19 @@ import java.util.Objects;
  */
 public class IPod extends IDevice
 {
-    private static final double MIN_DECIBEL_LVL = 0.0;
-    private static final double UNSAFE_DECIBEL_LVL = 85.0;
+    private static final double MIN_DECIBEL_LVL;
+    private static final double UNSAFE_DECIBEL_LVL;
+    private static final String PURPOSE;
 
-    int numOfStoredSongs;
-    final double maxVolumeDecibel;
+    static
+    {
+        MIN_DECIBEL_LVL = 0.0;
+        UNSAFE_DECIBEL_LVL = 85.0;
+        PURPOSE = "music";
+    }
+
+    private int numOfStoredSongs;
+    private final double maxVolumeDecibel;
 
     /**
      * Constructs an iPod object.
@@ -31,12 +39,14 @@ public class IPod extends IDevice
      * @param maxVolumeDecibel the absolute max volume the iPod
      *                         can go measured in decibels.
      */
-    public IPod(int numOfStoredSongs, double maxVolumeDecibel)
+    public IPod(final int numOfStoredSongs, final double maxVolumeDecibel)
     {
+        super("music");
+        validateMaxDecibelLevel();
         this.numOfStoredSongs = numOfStoredSongs;
         this.maxVolumeDecibel = maxVolumeDecibel;
 
-        validateMaxDecibelLevel();
+
     }
 
     /**

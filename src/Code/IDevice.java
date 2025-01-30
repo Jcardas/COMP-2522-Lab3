@@ -25,5 +25,11 @@ public abstract class IDevice
         }
     }
 
+    @Override
+    public String toString()
+    {
+        return("The purpose of this device is: " + purpose);
+    }
+
     public abstract void printDetails();
 }
